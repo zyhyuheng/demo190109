@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>登录成功</h1>
+    <div sec:authorize="hasRole('admin')"> <!-- 用户类型为ROLE_ADMIN 显示 -->
+        <p class="bg-info" >恭喜您,您有 admin 权限</p>
+    </div>
+    <div sec:authorize="hasRole('root')"> <!-- 用户类型为ROLE_ADMIN 显示 -->
+        <p class="bg-info">恭喜您,您有 root 权限 </p>
+    </div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" class="btn btn-primary" value="注销"/>
+    </form>
+</body>
+</html>
