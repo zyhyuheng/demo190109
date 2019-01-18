@@ -1,14 +1,19 @@
-package com.example.demo190109.entity;
+package com.example.demo190109.entity.sys;
 
+import jdk.nashorn.internal.objects.annotations.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import java.io.Serializable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -28,6 +33,11 @@ public class UserEntity implements UserDetails {
     private LocalDateTime registerTime;
     @Column(name="login_time")
     private LocalDateTime loginTime;
+    @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
+    private List<RoleEntity> roles;
+
+    @Transient
+    private List<? extends GrantedAuthority> authorities;
 
     public UserEntity(){
         this.id=UUID.randomUUID().toString();
@@ -64,6 +74,18 @@ public class UserEntity implements UserDetails {
 
     public void setLoginTime(LocalDateTime loginTime) {
         this.loginTime = loginTime;
+    }
+
+    public List<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleEntity> roles) {
+        this.roles = roles;
+    }
+
+    public void setAuthorities(List<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
     }
 
     @Override

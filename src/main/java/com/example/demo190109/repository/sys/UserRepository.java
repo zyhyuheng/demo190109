@@ -1,7 +1,9 @@
-package com.example.demo190109.repository;
+package com.example.demo190109.repository.sys;
 
-import com.example.demo190109.entity.UserEntity;
+import com.example.demo190109.entity.sys.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
 
 /**
  * @autuor zhaoyh
@@ -9,4 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface UserRepository extends JpaRepository<UserEntity,String> {
     public UserEntity findByUsername(String username);
+
 }

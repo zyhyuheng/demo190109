@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,6 +29,13 @@
             &times;
         </button>
         账号或密码错误
+    </div>
+    <div class="alert alert-danger alert-dismissable" th:if="${param.expired}">
+        <button type="button" class="close" data-dismiss="alert"
+                aria-hidden="true">
+            &times;
+        </button>
+        用户已登录
     </div>
     <label for="inputEmail" class="sr-only">账号</label>
     <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>

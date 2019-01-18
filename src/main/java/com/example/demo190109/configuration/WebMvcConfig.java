@@ -7,8 +7,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * @autuor zhaoyh
  * @data 2019/1/14 11:22
+ *
+ * 该方法无法写逻辑
  */
-@Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {

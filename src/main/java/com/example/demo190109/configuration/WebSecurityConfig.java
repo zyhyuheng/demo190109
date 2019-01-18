@@ -1,6 +1,7 @@
 package com.example.demo190109.configuration;
 
-import com.example.demo190109.service.CustomUserService;
+import com.example.demo190109.service.sys.CustomUserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -10,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 /**
  * @autuor zhaoyh
@@ -21,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     UserDetailsService customUserService() {
-        return new CustomUserService();
+        return new CustomUserServiceImpl();
     }
 
     @Override
@@ -37,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("reg").permitAll().
+        http.authorizeRequests().antMatchers("/reg").permitAll().
                 anyRequest().authenticated().and().
                 formLogin().loginPage("/login").
                 defaultSuccessUrl("/index",true).
