@@ -11,6 +11,7 @@ public class Demo190109ApplicationTests {
 
     @Test
     public void contextLoads() {
+	String str = "111111111111";
     }
 
 }
